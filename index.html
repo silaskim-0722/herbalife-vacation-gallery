@@ -254,7 +254,7 @@
             margin-top: 40px;
         }
 
-        /* 사진 모달 */
+        /* 사진 모달 - 개선된 버전 */
         .modal {
             display: none;
             position: fixed;
@@ -263,40 +263,207 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             animation: fadeIn 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
         .modal-content {
             position: relative;
             margin: auto;
             padding: 20px;
-            width: 90%;
-            max-width: 800px;
+            width: 95%;
+            max-width: 1000px;
             top: 50%;
             transform: translateY(-50%);
+            text-align: center;
         }
 
         .modal img {
-            width: 100%;
+            max-width: 100%;
+            max-height: 80vh;
+            width: auto;
             height: auto;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s ease;
+        }
+
+        .modal img:hover {
+            transform: scale(1.02);
+        }
+
+        .modal-header {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 1002;
+        }
+
+        .modal-footer {
+            margin-top: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 25px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            display: inline-block;
+        }
+
+        .photo-info {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .modal-download-btn {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-download-btn:hover {
+            background: linear-gradient(45deg, #2980b9, #1f639a);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
         }
 
         .close {
             position: absolute;
-            top: 10px;
-            right: 25px;
+            top: 20px;
+            right: 30px;
             color: white;
-            font-size: 35px;
+            font-size: 40px;
             font-weight: bold;
             cursor: pointer;
-            z-index: 1001;
+            z-index: 1003;
+            background: rgba(0, 0, 0, 0.7);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
 
         .close:hover {
-            color: #f1c40f;
+            background: rgba(231, 76, 60, 0.8);
+            transform: rotate(90deg);
+        }
+
+        /* 네비게이션 버튼 */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+        }
+
+        .nav-btn:hover {
+            background: rgba(52, 152, 219, 0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-btn {
+            left: 20px;
+        }
+
+        .next-btn {
+            right: 20px;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .nav-btn:disabled:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: translateY(-50%) scale(1);
+        }
+
+        /* 키보드 단축키 안내 */
+        .keyboard-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 15px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 10px;
+                width: 98%;
+            }
+
+            .nav-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+
+            .close {
+                width: 40px;
+                height: 40px;
+                font-size: 28px;
+                top: 15px;
+                right: 15px;
+            }
+
+            .modal-header {
+                font-size: 0.8rem;
+                padding: 8px 15px;
+                top: 15px;
+            }
+
+            .keyboard-hint {
+                display: none;
+            }
         }
 
         @keyframes fadeIn {
@@ -345,11 +512,35 @@
         </div>
     </div>
 
-    <!-- 사진 모달 -->
+    <!-- 사진 모달 - 개선된 버전 -->
     <div id="photoModal" class="modal">
         <div class="modal-content">
+            <div class="modal-header">
+                <span id="modalCounter">1 / 10</span>
+            </div>
             <span class="close">&times;</span>
+            <button class="nav-btn prev-btn" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="nav-btn next-btn" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
             <img id="modalImage" src="" alt="">
+            <div class="modal-footer">
+                <div class="photo-info" id="modalPhotoName">사진 이름</div>
+                <div class="modal-actions">
+                    <button class="modal-download-btn" id="modalDownloadBtn">
+                        <i class="fas fa-download"></i> 다운로드
+                    </button>
+                    <span style="color: rgba(255,255,255,0.6); font-size: 0.8rem;">
+                        <i class="fas fa-mouse-pointer"></i> 클릭하여 확대/축소
+                    </span>
+                </div>
+            </div>
+            <div class="keyboard-hint">
+                <i class="fas fa-keyboard"></i> 
+                ESC: 닫기 | ← →: 이전/다음 | 스페이스: 다운로드
+            </div>
         </div>
     </div>
 
@@ -433,6 +624,9 @@
 
         // 갤러리 렌더링
         function renderGallery(imageFiles) {
+            // 전역 변수에 이미지 데이터 저장
+            currentImages = imageFiles;
+            
             const gallery = document.getElementById('gallery');
             
             gallery.innerHTML = imageFiles.map((image, index) => `
@@ -440,7 +634,8 @@
                     <img src="${image.downloadUrl}" 
                          alt="${image.name}" 
                          loading="lazy"
-                         onclick="openModal('${image.downloadUrl}', '${image.name}')">
+                         onclick="openModal('${image.downloadUrl}', '${image.name}')"
+                         title="클릭하여 크게 보기">
                     <div class="photo-overlay">
                         <div class="photo-name">${image.name}</div>
                         <button class="download-btn" onclick="downloadImage('${image.downloadUrl}', '${image.name}')">
@@ -462,19 +657,96 @@
             document.body.removeChild(link);
         }
 
-        // 모달 열기
+        // 전역 변수
+        let currentImages = [];
+        let currentImageIndex = 0;
+
+        // 모달 열기 - 개선된 버전
         function openModal(src, alt) {
+            // 현재 이미지의 인덱스 찾기
+            currentImageIndex = currentImages.findIndex(img => img.downloadUrl === src);
+            
             const modal = document.getElementById('photoModal');
             const modalImg = document.getElementById('modalImage');
+            const modalPhotoName = document.getElementById('modalPhotoName');
+            const modalCounter = document.getElementById('modalCounter');
+            const modalDownloadBtn = document.getElementById('modalDownloadBtn');
             
+            // 모달 표시
             modal.style.display = 'block';
-            modalImg.src = src;
-            modalImg.alt = alt;
+            updateModalContent();
+            
+            // 다운로드 버튼 이벤트
+            modalDownloadBtn.onclick = () => {
+                const currentImage = currentImages[currentImageIndex];
+                downloadImage(currentImage.downloadUrl, currentImage.name);
+            };
+            
+            // 네비게이션 버튼 상태 업데이트
+            updateNavButtons();
+            
+            // 이미지 확대/축소 기능
+            modalImg.style.cursor = 'zoom-in';
+            modalImg.onclick = function() {
+                if (this.style.transform === 'scale(1.5)') {
+                    this.style.transform = 'scale(1)';
+                    this.style.cursor = 'zoom-in';
+                } else {
+                    this.style.transform = 'scale(1.5)';
+                    this.style.cursor = 'zoom-out';
+                }
+            };
+        }
+
+        // 모달 내용 업데이트
+        function updateModalContent() {
+            const currentImage = currentImages[currentImageIndex];
+            const modalImg = document.getElementById('modalImage');
+            const modalPhotoName = document.getElementById('modalPhotoName');
+            const modalCounter = document.getElementById('modalCounter');
+            
+            modalImg.src = currentImage.downloadUrl;
+            modalImg.alt = currentImage.name;
+            modalImg.style.transform = 'scale(1)'; // 확대 상태 초기화
+            modalImg.style.cursor = 'zoom-in';
+            modalPhotoName.textContent = currentImage.name;
+            modalCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
+        }
+
+        // 네비게이션 버튼 상태 업데이트
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentImageIndex === 0;
+            nextBtn.disabled = currentImageIndex === currentImages.length - 1;
+        }
+
+        // 이전 이미지
+        function showPrevImage() {
+            if (currentImageIndex > 0) {
+                currentImageIndex--;
+                updateModalContent();
+                updateNavButtons();
+            }
+        }
+
+        // 다음 이미지
+        function showNextImage() {
+            if (currentImageIndex < currentImages.length - 1) {
+                currentImageIndex++;
+                updateModalContent();
+                updateNavButtons();
+            }
         }
 
         // 모달 닫기
         function closeModal() {
-            document.getElementById('photoModal').style.display = 'none';
+            const modal = document.getElementById('photoModal');
+            const modalImg = document.getElementById('modalImage');
+            
+            modal.style.display = 'none';
+            modalImg.style.transform = 'scale(1)'; // 확대 상태 초기화
         }
 
         // 이벤트 리스너
@@ -486,9 +758,31 @@
             if (e.target === this) closeModal();
         };
 
-        // ESC 키로 모달 닫기
+        // 네비게이션 버튼 이벤트
+        document.getElementById('prevBtn').onclick = showPrevImage;
+        document.getElementById('nextBtn').onclick = showNextImage;
+
+        // 키보드 단축키
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
+            const modal = document.getElementById('photoModal');
+            if (modal.style.display === 'block') {
+                switch(e.key) {
+                    case 'Escape':
+                        closeModal();
+                        break;
+                    case 'ArrowLeft':
+                        showPrevImage();
+                        break;
+                    case 'ArrowRight':
+                        showNextImage();
+                        break;
+                    case ' ': // 스페이스바
+                        e.preventDefault();
+                        const currentImage = currentImages[currentImageIndex];
+                        downloadImage(currentImage.downloadUrl, currentImage.name);
+                        break;
+                }
+            }
         });
 
         console.log('사진 갤러리 초기화 완료');
